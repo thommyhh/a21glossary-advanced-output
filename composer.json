@@ -1,0 +1,7 @@
+{
+	"name": "kapp-hamburg/a21glossary-advanced-output",
+	"description": "A21glossary Advanced Output: A extended Output for the A21glossary. SEO friendly incl. RealURL support & search function",
+	"license": "GPL-2.0+",
+	"type": "typo3-cms-extension",
+	"version": "1.0.0-dev"
+}
