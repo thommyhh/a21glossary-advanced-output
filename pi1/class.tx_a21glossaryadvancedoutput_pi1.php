@@ -21,6 +21,9 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\MathUtility;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
  * Plugin 'A21glossary Advanced Output' for the 'a21glossary_advanced_output' extension.
@@ -58,10 +61,7 @@ class tx_a21glossaryadvancedoutput_pi1 extends tslib_pibase {
 	 * @return bool
 	 */
 	function testInt($int) {
-		if (class_exists('t3lib_utility_Math')) {
-			return t3lib_utility_Math::canBeInterpretedAsInteger($int);
-		}
-		return t3lib_div::testInt($int);
+        return MathUtility::canBeInterpretedAsInteger($int);
 	}
 
 	/**
@@ -119,7 +119,7 @@ class tx_a21glossaryadvancedoutput_pi1 extends tslib_pibase {
 			$this->piVars['back'] = $_GET['tx_a21glossary']['back'];
 		}
 
-		$this->cObj = t3lib_div::makeInstance('tslib_cObj');
+		$this->cObj = GeneralUtility::makeInstance(ContentObjectRenderer::class);
 		$this->orig_templateCode = $this->cObj->fileResource($this->conf['templateFile']);
 
 		$mainTemplateCode = $this->cObj->getSubpart($this->orig_templateCode, '###VIEW_GLOSSARY###');
@@ -312,7 +312,7 @@ class tx_a21glossaryadvancedoutput_pi1 extends tslib_pibase {
 					}
 					$sql .= ")";
 				} elseif (isset($this->piVars['char']) && $this->piVars['char'] != '') {
-					t3lib_div::devLog('Wrong Parameter set on ' . $this->prefixId . ' call!', 'a21glossary_advanced_output');
+					GeneralUtility::devLog('Wrong Parameter set on ' . $this->prefixId . ' call!', 'a21glossary_advanced_output');
 				}
 
 			} else {
@@ -425,10 +425,7 @@ class tx_a21glossaryadvancedoutput_pi1 extends tslib_pibase {
 	}
 
 	function intInRange($int, $start, $end) {
-		if (class_exists('t3lib_utility_Math')) {
-			return t3lib_utility_Math::forceIntegerInRange($int, $start, $end);
-		}
-		return t3lib_div::intInRange($int, $start, $end);
+        return MathUtility::forceIntegerInRange($int, $start, $end);
 	}
 
 	/**
