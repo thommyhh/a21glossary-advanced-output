@@ -24,6 +24,7 @@
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+use TYPO3\CMS\Frontend\Plugin\AbstractPlugin;
 
 /**
  * Plugin 'A21glossary Advanced Output' for the 'a21glossary_advanced_output' extension.
@@ -32,7 +33,7 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  * @package       TYPO3
  * @subpackage    tx_a21glossaryadvancedoutput
  */
-class tx_a21glossaryadvancedoutput_pi1 extends tslib_pibase {
+class tx_a21glossaryadvancedoutput_pi1 extends AbstractPlugin {
 
 	/**
 	 * Extension Prefix ID
@@ -216,7 +217,6 @@ class tx_a21glossaryadvancedoutput_pi1 extends tslib_pibase {
 
 			$subMarker = array();
 			$parms = array($this->prefixId . '[char]' => str_replace(' ', '', strtolower($char)));
-			$link = $this->pi_getPageLink($GLOBALS['TSFE']->id, '', $parms);
 
 			// build Cache Link
 			$cache_link = $this->pi_linkTP('-', $parms, 1, $GLOBALS['TSFE']->id);
@@ -234,7 +234,6 @@ class tx_a21glossaryadvancedoutput_pi1 extends tslib_pibase {
 
 		$marker = array();
 		$parms = array($this->prefixId . '[char]' => 'all');
-		$link = $this->pi_getPageLink($GLOBALS['TSFE']->id, '', $parms);
 
 		// build Cache Link
 		$cache_link = $this->pi_linkTP('-', $parms, 1, $GLOBALS['TSFE']->id);
